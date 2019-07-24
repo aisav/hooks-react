@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, createContext} from 'react';
+import React, {useState, useEffect, useRef, createContext, useMemo} from 'react';
 import Toggle from './Toggle';
 import Counter from './Counter';
 
@@ -13,10 +13,20 @@ const App = () => {
   })
 
   const ref = useRef()
-  return (
+
+  const reverseWord = word => {
+    console.log('reverseWord function called')
+    return [...word].reverse().join('')
+  }
+
+  const title = "Level Up Dishes"
+
+  const TitleReversed = useMemo(() => reverseWord(title), [title])
+
+      return (
       <UserContext.Provider value={{user: false}}>
     <div className="main-wrapper" ref={ref}>
-      <h1 onClick={()=>{ref.current.classList.add('new-fake-class')}}>Level Up Dishes</h1>
+      <h1 onClick={()=>{ref.current.classList.add('new-fake-class')}}>{TitleReversed}</h1>
       <Toggle/>
       <Counter/>
 
