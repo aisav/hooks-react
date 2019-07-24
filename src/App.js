@@ -1,5 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, createContext} from 'react';
 import Toggle from './Toggle';
+
+export const UserContext = createContext()
 
 const App = () => {
 
@@ -11,6 +13,7 @@ const App = () => {
 
   const ref = useRef()
   return (
+      <UserContext.Provider value={{user: false}}>
     <div className="main-wrapper" ref={ref}>
       <h1 onClick={()=>{ref.current.classList.add('new-fake-class')}}>Level Up Dishes</h1>
       <Toggle/>
@@ -27,6 +30,7 @@ const App = () => {
 
       </form>
     </div>
+      </UserContext.Provider>
   );
 };
 
