@@ -32,7 +32,7 @@ const App = () => {
   const TitleReversed = useMemo(() => reverseWord(title), [title])
 
       return (
-      <UserContext.Provider value={{user: false}}>
+      <UserContext.Provider value={{user: true}}>
     <div className="main-wrapper" ref={ref}>
       <h1 onClick={()=>{ref.current.classList.add('new-fake-class')}}>{TitleReversed}</h1>
       <Toggle/>
