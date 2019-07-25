@@ -7,10 +7,18 @@ export const UserContext = createContext()
 const App = () => {
 
   const [name, setName] = useState('')
+  const [dishes, setDishes] = useState([])
+
+  const fetchDishes = async () => {
+    const res = await fetch('https://my-json-server.typicode.com/leveluptuts/fakeapi/dishes')
+    const data = await res.json()
+    setDishes(data)
+  }
 
   useEffect(() => {
     document.title = name
-  })
+    fetchDishes()
+  }, [])
 
   const ref = useRef()
 
@@ -39,8 +47,18 @@ const App = () => {
         <button>
           Submit
         </button>
-
       </form>
+      { dishes.map(dish => (
+      <article className="dish-card dish-card--withImage">
+        <h3>{dish.name}</h3>
+        <p>{dish.desc}</p>
+        <div className="ingredients">
+          {dish.ingredients.map(ingredient => (
+            <span>{ingredient}</span>
+            ))}
+        </div>
+      </article>
+      ))}
     </div>
       </UserContext.Provider>
   );
