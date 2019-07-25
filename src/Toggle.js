@@ -10,8 +10,13 @@ const Toggle = () => {
 
   return (
       <div>
-        <button onClick={() => setToggle(!isToggled)}>Hide Scrolling</button>
-        {isToggled && <Hello/>}
+        {isToggled ? (
+            <Hello setToggle={setToggle}/>
+        ) : (
+            <button onClick={() => setToggle(!isToggled)}>Open Form & Hide Scrolling</button>
+        )
+        }
+
       </div>
   )
 }

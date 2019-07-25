@@ -1,10 +1,24 @@
-import React from 'react'
-import { useBodyScrollLock } from './bodyScrollLock'
+import React, {useRef} from 'react'
+import {useBodyScrollLock} from './bodyScrollLock'
+import {useOnclickOutside} from './useOnclickOutside'
 
-const Hello = () => {
+const Hello = ({setToggle}) => {
+
+  const ref = useRef()
+
+  useOnclickOutside(ref, setToggle)
+
   useBodyScrollLock()
+
   return (
-      <h2>Hello</h2>
+      <div className="dish-card" ref={ref}>
+        <form>
+          <div className="form-row">
+            <label htmlFor="name">Name: </label>
+            <input type="text" id="name"/>
+          </div>
+        </form>
+      </div>
   )
 }
 
