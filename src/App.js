@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef, createContext, useMemo} from 'react';
+import {useSpring, animated} from 'react-spring'
 import Toggle from './Toggle';
 import Counter from './Counter';
 
@@ -31,10 +32,13 @@ const App = () => {
 
   const TitleReversed = useMemo(() => reverseWord(title), [title])
 
+  const props = useSpring({opacity:1, from: {opacity: 0}})
+  console.log('props', props)
+
       return (
       <UserContext.Provider value={{user: true}}>
     <div className="main-wrapper" ref={ref}>
-      <h1 onClick={()=>{ref.current.classList.add('new-fake-class')}}>{TitleReversed}</h1>
+      <animated.h1 style={props} onClick={()=>{ref.current.classList.add('new-fake-class')}}>{TitleReversed}</animated.h1>
       <Toggle/>
       <Counter/>
 

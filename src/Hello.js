@@ -6,7 +6,7 @@ const Hello = ({setToggle}) => {
 
   const ref = useRef()
 
-  useOnclickOutside(ref, setToggle)
+  useOnclickOutside(ref, () => setToggle(false))
 
   useBodyScrollLock()
 
